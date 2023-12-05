@@ -1,0 +1,12 @@
+.book-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .book-list app-book-card {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  

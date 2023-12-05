@@ -1,0 +1,74 @@
+.login-container {
+    display: flex;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  }
+  
+  h1 {
+    font-size: 36px;
+    color: #2980b9; /* Cor azul para o título */
+    text-align: center;
+  }
+  
+  form {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Fundo cinza claro */
+    justify-content: center;
+    display: grid;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555; /* Cor dos rótulos */
+  }
+  
+  input,
+  button {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    color: #444; /* Cor do texto dos inputs */
+  }
+  
+  button {
+    background-color: #3498db; /* Cor de fundo azul */
+    color: white; /* Cor do texto no botão */
+    cursor: pointer;
+  }
+  
+  button:hover:enabled {
+    opacity: 80%; /* Altera a cor do botão ao passar o mouse */
+  }
+
+  button:disabled {
+    background-color: #444;
+  }
+  
+  .button-register {
+    color: #3498db; /* Cor azul para o link de Registre-se */
+    text-decoration: none;
+  }
+  
+  .button-register:hover {
+    text-decoration: underline; /* Sublinhado ao passar o mouse */
+  }
+
+  .error-message {
+    color: #e74c3c; /* Cor vermelha para a mensagem de erro */
+    font-size: 14px; /* Tamanho da fonte */
+    margin-top: 8px; /* Espaçamento acima da mensagem */
+  }
+  

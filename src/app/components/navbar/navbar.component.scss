@@ -1,0 +1,46 @@
+.mat-toolbar {
+  background-color: #3498db;
+  color: white;
+}
+
+.mat-toolbar-row {
+  justify-content: space-between;
+}
+
+a.link {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+span:hover {
+  opacity: 80%;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+button.mat-button {
+  color: white;
+}
+
+button.mat-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mat-menu-content {
+  background-color: #fff;
+  color: #3498db;
+}
+
+.mat-menu-item{
+  background-color: #fff;
+  color: #3498db;
+}
+
+.mat-menu-item:hover {
+  background-color: #3498db;
+  color: white;
+}

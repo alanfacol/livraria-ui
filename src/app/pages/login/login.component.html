@@ -1,0 +1,18 @@
+<!-- login.component.html -->
+
+<div class="login-container">
+  <div>
+    <h1 class="text-center">Livraria FACOL</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="username">Usuário:</label>
+      <input type="text" id="username" name="username" formControlName="username" required>
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" formControlName="password" required>
+      <button type="submit">Entrar</button>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </form>
+    <p>Ainda não tem uma conta? <a class="button-register" routerLink="/registro">Registre-se</a></p>
+  </div>
+</div>
