@@ -49,6 +49,8 @@ export class AddressComponent {
   address!: Address
   books: Book[]
 
+  totalAmount: number = 0
+  totalValue: number = 0
 
   displayedColumns: string[] = ['public_place', 'number', 'complement', 'district', 'city', 'state', 'select'];
 
@@ -57,6 +59,7 @@ export class AddressComponent {
     private _snackBar: MatSnackBar) {
     this.books = this.cartService.get()
     this.updateCartValue()
+    this.sumAmount()
   }
 
   setSelected(address: Address) {
@@ -66,6 +69,13 @@ export class AddressComponent {
 
   isSelected(addressId: Address) {
     return addressId.id == this.addressSelected ? true : false;
+  }
+
+  sumAmount(){
+    this.books.forEach((book) =>{
+      this.totalAmount += 1;
+      this.totalValue += book.value
+    })
   }
 
   saveCart() {

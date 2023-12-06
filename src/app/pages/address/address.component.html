@@ -1,87 +1,87 @@
 <app-navbar></app-navbar>
 <div class="container">
-   <div class="cart-container">
-      <div class="table-container">
-         <table mat-table [dataSource]="addresses" class="mat-elevation-z8">
+  <div class="cart-container">
+    <div class="table-container">
+      <table mat-table [dataSource]="addresses" class="mat-elevation-z8">
+        <ng-container matColumnDef="public_place">
+          <th mat-header-cell *matHeaderCellDef>Logradouro</th>
+          <td mat-cell *matCellDef="let address">
+            {{ address.public_place }}
+          </td>
+        </ng-container>
 
-           <ng-container matColumnDef="public_place">
-             <th mat-header-cell *matHeaderCellDef>Logradouro</th>
-             <td mat-cell *matCellDef="let address">
-               {{ address.public_place }}
-             </td>
-           </ng-container>
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>Número</th>
+          <td mat-cell *matCellDef="let address">
+            {{ address.number }}
+          </td>
+        </ng-container>
 
-           <ng-container matColumnDef="number">
-            <th mat-header-cell *matHeaderCellDef>Número</th>
-            <td mat-cell *matCellDef="let address">
-              {{ address.number }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="complement">
+          <th mat-header-cell *matHeaderCellDef>Complemento</th>
+          <td mat-cell *matCellDef="let address">
+            {{ address.complement }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="complement">
-            <th mat-header-cell *matHeaderCellDef>Complemento</th>
-            <td mat-cell *matCellDef="let address">
-              {{ address.complement }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="district">
+          <th mat-header-cell *matHeaderCellDef>Bairro</th>
+          <td mat-cell *matCellDef="let address">
+            {{ address.district }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="district">
-            <th mat-header-cell *matHeaderCellDef>Bairro</th>
-            <td mat-cell *matCellDef="let address">
-              {{ address.district }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>Cidade</th>
+          <td mat-cell *matCellDef="let address">
+            {{ address.city }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="city">
-            <th mat-header-cell *matHeaderCellDef>Cidade</th>
-            <td mat-cell *matCellDef="let address">
-              {{ address.city }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let address">
+            {{ address.state }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="state">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
-            <td mat-cell *matCellDef="let address">
-              {{ address.state }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>Escolha</th>
+          <td mat-cell *matCellDef="let address">
+            <button
+              mat-button
+              (click)="setSelected(address)"
+              [disabled]="isSelected(address)"
+            >
+              Selecionar
+            </button>
+          </td>
+        </ng-container>
 
-           <ng-container matColumnDef="select">
-             <th mat-header-cell *matHeaderCellDef>Escolha</th>
-             <td mat-cell *matCellDef="let address">
-               <button
-                 mat-button
-                 (click)="setSelected(address)"
-                 [disabled]="isSelected(address)"
-               >
-                 Selecionar
-               </button>
-             </td>
-           </ng-container>
-      
-           <!-- Definir outras colunas aqui -->
-       
-           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-         </table>
-      </div>
-      <hr/>
-      <div class="book-list">
-         <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
-      </div>
-   </div>
-   <div class="address-container">
-      <h3>Endereço Selecionado:</h3>
-      <ng-container *ngIf="address != null">
-         <p><strong>Logradouro:</strong> {{address.public_place}} </p>
-      </ng-container>
-      <h3>Sobre a compra</h3>
-      <ng-container>
-         <p>Lista de livros selecionados</p>
-      </ng-container>
+        <!-- Definir outras colunas aqui -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <hr />
+    <div class="book-list">
+      <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
+    </div>
+  </div>
+  <div class="address-container">
+    <p style="color: green; font-size: 2.5em; padding-top: 10px; padding-bottom: 10px;">R${{ this.totalValue }}</p>
+    <ng-container *ngIf="address != null">
+      <p><strong>Logradouro:</strong> {{ address.public_place }}</p>
+    </ng-container>
+    <p *ngFor="let book of books">{{ book.name }} - R${{ book.value }}</p>
+    <ng-container> 
       <div class="buttons-container">
-        <button mat-button class="red-button" (click)="clearCart()">Cancelar</button>
+        <button mat-button class="red-button" (click)="clearCart()">
+          Cancelar
+        </button>
         <button mat-button (click)="saveCart()">Comprar</button>
       </div>
-    </div>
+    </ng-container>
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Login } from '../../model/auth.interface';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private storage: StorageService,
-    private router: Router) {
+    private router: Router,
+    private _snackBar: MatSnackBar) {
 
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -35,6 +37,7 @@ export class LoginComponent {
 
       this.authService.login(loginData).subscribe({
         next: (response) => {
+          this._snackBar.open('Login realizado com sucesso', 'Ok')
           this.storage.set('token', response.token)
           this.router.navigate(['livros'])
         },

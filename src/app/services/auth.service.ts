@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
-import { Auth } from '../model/auth.interface';
+import { Auth, SignUp } from '../model/auth.interface';
 
 const API_URL = environment.API_URL; // Obtém o URL da API do arquivo de ambiente
 
@@ -22,5 +22,10 @@ export class AuthService {
 
   isLogged(): boolean{
     return this.storageService.get('token') ? true : false;
+  }
+
+  signUp(signUpForm: SignUp){
+    const loginUrl = `${API_URL}/me`;
+    return this.http.post<SignUp>(loginUrl, signUpForm);
   }
 }

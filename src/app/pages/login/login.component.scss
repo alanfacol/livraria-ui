@@ -7,10 +7,21 @@
     height: 80vh;
   }
   
+  // h1 {
+  //   font-size: 36px;
+  //   color: #2980b9; /* Cor azul para o título */
+  //   text-align: center;
+  // }
+
   h1 {
+    font-family: 'Arial', sans-serif;
     font-size: 36px;
-    color: #2980b9; /* Cor azul para o título */
-    text-align: center;
+    color: #2980b9; 
+    text-transform: uppercase; /* Transforma o texto em maiúsculo */
+    letter-spacing: 4px; /* Espaçamento entre as letras */
+    margin: 0; /* Remove margens */
+    padding: 20px; /* Adiciona espaço interno */
+    text-align: center; /* Centraliza o texto */
   }
   
   form {

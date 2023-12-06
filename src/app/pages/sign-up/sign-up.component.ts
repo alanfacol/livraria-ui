@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { SignUp } from '../../model/auth.interface';
+import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -6,33 +11,41 @@ import { Component } from '@angular/core';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  nome: string = "Bunda";
-  documento: string = "asdasdasdas";
-  dataNascimento: Date = new Date();
-  tipoPessoa: string = "PF";
-  usuario: string = "alan";
-  senha: string = "";
+  loginForm!: FormGroup;
+  errorMessage: string = '';
+  signUp!: SignUp;
 
-  cadastrarUsuario() {
-    console.log('Usuário cadastrado:', {
-      nome: this.nome,
-      documento: this.documento,
-      dataNascimento: this.dataNascimento,
-      tipoPessoa: this.tipoPessoa,
-      usuario: this.usuario,
-      senha: this.senha
+  constructor(private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private _snackBar: MatSnackBar) {
+
+    this.loginForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      document: ['', Validators.required],
+      birthdate: ['', Validators.required],
+      pj: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
+
   }
 
-  public aplicarMascara(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const inputValue = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const signupData: SignUp = this.loginForm.value as SignUp;
+      console.log(signupData)
 
-    // Aplica a máscara de acordo com o tamanho do valor
-    if (inputValue.length <= 11) {
-      this.documento = inputValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    } else {
-      this.documento = inputValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})/, '$1.$2.$3/$4');
-    }
+      this.authService.signUp(signupData).subscribe({
+        next: (response) => {
+            this._snackBar.open('Resgistro realizado com sucesso', 'Ok')
+          this.router.navigate(['login'])
+        },
+        error: (error) => {
+          this._snackBar.open('Erro ao realizado registro', 'Ok')
+        }
+      })
+    } else this._snackBar.open('Erro Revise seus dados', 'Ok')
   }
+
 }

@@ -30,7 +30,6 @@ export class CartService {
     this.cartBooks = this.storage.get('cart')
     this.cartBooks.forEach((bk, index) => {
       if (bk.code == book.code) {
-        console.log(index, book)
         this.cartBooks.splice(index)
       }
     })

@@ -59,6 +59,17 @@
   .form-group {
     margin-bottom: 20px;
   }
+
+  .form-group-radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-group-radio label {
+    margin: 10px;
+  }
   
   label {
     display: block;

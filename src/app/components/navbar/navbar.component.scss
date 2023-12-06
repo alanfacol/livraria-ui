@@ -1,6 +1,7 @@
 .mat-toolbar {
   background-color: #3498db;
   color: white;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .mat-toolbar-row {
@@ -10,8 +11,12 @@
 a.link {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
+  margin: 10px;
+  font-weight: 500;
+  display: flex;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 2px;
 }
 
 span:hover {
@@ -35,7 +40,7 @@ button.mat-button:hover {
   color: #3498db;
 }
 
-.mat-menu-item{
+.mat-menu-item {
   background-color: #fff;
   color: #3498db;
 }
@@ -47,4 +52,16 @@ button.mat-button:hover {
 
 .snackbar {
   background-color: #3498db;
+}
+
+h1 {
+  font-family: "Arial", sans-serif;
+  font-size: 36px;
+  color: #ffffff;
+  text-transform: uppercase; 
+  letter-spacing: 4px; 
+  padding-right: 10px;
+  text-align: center; 
+  border-radius: 8px; 
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); 
 }
