@@ -3,6 +3,7 @@ import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { Book } from '../../model/book.interface';
 import { CartService } from '../../services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  token$: string| null;
+  token$: string | null;
   user: string;
   itensCarrinho: Book[] = []
 
@@ -26,14 +27,7 @@ export class NavbarComponent {
     event.stopPropagation();
   }
 
-  saveCart(){}
-
-  clearCart(){
-    this.cartService.clean()
-    window.location.reload()
-  }
-
-  countItems(): number{
+  countItems(): number {
     return this.cartService.count()
   }
 

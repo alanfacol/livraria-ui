@@ -12,7 +12,7 @@
     <p style="color: green; font-size: 1.8em">R${{ book.value }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button color="warn" [disabled]="!isInChart()" (click)="remove()">Remover</button>
-    <button mat-button color="primary" (click)="save()">Comprar</button>
+    <button mat-button color="warn" (click)="remove()" [disabled]="!book.inCart">Remover</button>
+    <button mat-button color="primary" (click)="save()" [disabled]="book.inCart">Comprar</button>
   </mat-card-actions>
 </mat-card>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
-import { BehaviorSubject } from 'rxjs';
 import { Book } from '../model/book.interface';
 
 @Injectable({
@@ -9,38 +8,41 @@ import { Book } from '../model/book.interface';
 export class CartService {
   private cartBooks: Book[] = [];
 
-  constructor(private storage: StorageService) { 
+  constructor(private storage: StorageService) {
   }
 
-  init(){
-    if(!this.storage.get('cart'))
-    this.storage.set('cart', [])
-  }
-  
-  save(book: Book){
-      this.cartBooks = this.storage.get('cart')
-      this.cartBooks.push(book)
-      this.storage.set('cart', this.cartBooks)
+  init() {
+    if (!this.storage.get('cart'))
+      this.storage.set('cart', [])
   }
 
-  remove(book: Book){
+  get(): any {
+    return this.storage.get('cart')
+  }
+
+  save(book: Book) {
     this.cartBooks = this.storage.get('cart')
-    this.cartBooks.forEach((bk, index) =>{
-      if(bk.code == book.code) {
-        console.log(book)
+    this.cartBooks.push(book)
+    this.storage.set('cart', this.cartBooks)
+  }
+
+  remove(book: Book) {
+    this.cartBooks = this.storage.get('cart')
+    this.cartBooks.forEach((bk, index) => {
+      if (bk.code == book.code) {
+        console.log(index, book)
         this.cartBooks.splice(index)
-        return
       }
     })
     this.storage.set('cart', this.cartBooks)
   }
 
-  clean(){
+  clean() {
     this.storage.remove('cart')
   }
 
-  count(): number{
+  count(): number {
     this.cartBooks = this.storage.get('cart')
-    return this.cartBooks.length
+    return this.cartBooks ? this.cartBooks.length : 0
   }
 }

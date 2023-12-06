@@ -3,5 +3,6 @@ export interface Book {
     name: string,
     description: string,
     value: number,
-    stock: number
+    stock: number,
+    inCart?: boolean
 }

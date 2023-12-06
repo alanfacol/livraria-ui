@@ -6,6 +6,9 @@ mat-card {
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
+  max-width: 200px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 mat-card:hover {
@@ -33,4 +36,27 @@ mat-card-actions {
   display: flex;
   justify-content: flex-end;
   padding: 8px;
+}
+
+mat-form-field {
+  width: 30%;
+  background-color: #fff;
+}
+
+mat-select {
+  border-radius: 4px; /* Bordas arredondadas */
+  color: #ffffff; /* Cor do texto */
+  width: 1px;
+}
+
+/* Estilizando as opções do mat-select */
+mat-option {
+  width: 1px;
+  font-size: 14px; /* Tamanho da fonte */
+  color: #ffffff; /* Cor do texto */
+}
+
+/* Estilo quando o mat-select estiver focado */
+mat-select:focus {
+  border-color: #3498db; /* Cor da borda ao focar */
 }

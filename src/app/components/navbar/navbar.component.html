@@ -2,7 +2,7 @@
   <span><a routerLink="/livros" class="link">Livros</a></span>
   <span><a routerLink="/compras" class="link">Compras</a></span>
   <span class="fill-space"></span>
-  <button mat-icon-button [matMenuTriggerFor]="carrinhoMenu">
+  <button mat-icon-button routerLink="/carrinho">
     <mat-icon [matBadge]="this.countItems()" aria-hidden="false">shopping_cart</mat-icon>
   </button>
   <button mat-button [matMenuTriggerFor]="userMenu">{{this.user}}</button>
@@ -11,12 +11,4 @@
 <mat-menu #userMenu="matMenu">
   <span mat-menu-item>Perfil</span>
   <button mat-menu-item (click)="logout()">Sair</button>
-</mat-menu>
-
-<mat-menu #carrinhoMenu="matMenu">
-  <button mat-menu-item (click)="clearCart()">Limpar Carrinho</button>
-  <button mat-menu-item (click)="saveCart()">Finalizar Compra</button>
-  <ng-container *ngFor="let item of itensCarrinho">
-    <button mat-menu-item>{{item.code}} - {{item.name}}</button>
-  </ng-container>
 </mat-menu>

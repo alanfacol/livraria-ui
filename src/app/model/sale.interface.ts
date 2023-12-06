@@ -1,4 +1,9 @@
 export interface Sale {
     addressId: number,
-    booksCode: string[]
+    booksCode: Pack[]
+}
+
+interface Pack {
+    book: string,
+    amount: number
 }

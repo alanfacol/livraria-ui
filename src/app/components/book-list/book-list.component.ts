@@ -11,12 +11,14 @@ export class BookListComponent {
 
   constructor(private cartService: CartService){
     this.cartService.init()
+    this.updateCartValue();
   }
+
   books: Book[] = [
     {
       code: '1',
       name: 'Livro 1',
-      description: 'Descrição do Livro 1',
+      description: 'Descrição do Livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1',
       value: 20.00,
       stock: 5
     },
@@ -35,4 +37,15 @@ export class BookListComponent {
       stock: 8,
     },
   ];
+
+  private updateCartValue(){
+    let chartBooks: Book[] = this.cartService.get()
+    this.books.forEach((book) => {
+      chartBooks.forEach((cartBook) => {
+          if (cartBook.code == book.code){
+            book.inCart = true
+          }
+      })
+    })
+  }
 }

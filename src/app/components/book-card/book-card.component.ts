@@ -9,24 +9,21 @@ import { CartService } from '../../services/cart.service';
 })
 export class BookCardComponent implements OnInit {
   @Input() book!: Book;
-  private isInCart: boolean;
   
   constructor(private cart: CartService) { 
-    this.isInCart = false;
+
   }
   
   ngOnInit() { }
 
   save() {
     this.cart.save(this.book)
-    this.isInCart = true;
+    this.book.inCart = true
   }
 
   remove() {
     this.cart.remove(this.book)
-    this.isInCart = false;
+    this.book.inCart = false
   }
-
-  isInChart(): boolean {return this.isInCart}
 }
 
