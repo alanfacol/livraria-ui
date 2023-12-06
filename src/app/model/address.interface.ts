@@ -1,10 +1,10 @@
 export interface Address {
     id: number,
-    public_place: string,
+    publicPlace: string,
     number: string,
     complement: string,
     district: string,
     city: string,
     state: string,
-    zip_code: string
+    zipCode: string
 }

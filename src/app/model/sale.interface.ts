@@ -3,7 +3,7 @@ export interface Sale {
     booksCode: Pack[]
 }
 
-interface Pack {
+export interface Pack {
     book: string,
     amount: number
 }

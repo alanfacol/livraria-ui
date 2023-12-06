@@ -6,7 +6,7 @@
         <ng-container matColumnDef="public_place">
           <th mat-header-cell *matHeaderCellDef>Logradouro</th>
           <td mat-cell *matCellDef="let address">
-            {{ address.public_place }}
+            {{ address.publicPlace }}
           </td>
         </ng-container>
 
@@ -58,8 +58,6 @@
           </td>
         </ng-container>
 
-        <!-- Definir outras colunas aqui -->
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
@@ -72,7 +70,7 @@
   <div class="address-container">
     <p style="color: green; font-size: 2.5em; padding-top: 10px; padding-bottom: 10px;">R${{ this.totalValue }}</p>
     <ng-container *ngIf="address != null">
-      <p><strong>Logradouro:</strong> {{ address.public_place }}</p>
+      <p><strong>Logradouro:</strong> {{ address.publicPlace }}</p>
     </ng-container>
     <p *ngFor="let book of books">{{ book.name }} - R${{ book.value }}</p>
     <ng-container> 

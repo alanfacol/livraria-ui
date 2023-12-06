@@ -1,52 +1,23 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Address } from '../../model/address.interface';
 import { Book } from '../../model/book.interface';
-import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SaleService } from '../../services/sale.service';
+import { Sale, Pack } from '../../model/sale.interface';
+import { AddressService } from '../../services/address.service';
 
 @Component({
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent {
-  addresses: Address[] = [
-    {
-      id: 1,
-      public_place: 'Rua A',
-      number: '123',
-      complement: 'AP 101',
-      district: 'Centro',
-      city: 'Cidade A',
-      state: 'Estado A',
-      zip_code: '12345-678'
-    },
-    {
-      id: 2,
-      public_place: 'Avenida B',
-      number: '456',
-      complement: 'Casa',
-      district: 'Bairro X',
-      city: 'Cidade B',
-      state: 'Estado B',
-      zip_code: '98765-432'
-    },
-    {
-      id: 3,
-      public_place: 'Avenida C',
-      number: '789',
-      complement: 'Casa',
-      district: 'Bairro X',
-      city: 'Cidade B',
-      state: 'Estado B',
-      zip_code: '98765-432'
-    }
-  ];
-
+export class AddressComponent implements OnInit{
+  addresses: Address[] = []
   addressSelected!: number
   address!: Address
+  sale!: Sale
   books: Book[]
 
   totalAmount: number = 0
@@ -54,12 +25,18 @@ export class AddressComponent {
 
   displayedColumns: string[] = ['public_place', 'number', 'complement', 'district', 'city', 'state', 'select'];
 
-  constructor(private route: Router,
+  constructor(private router: Router,
     private cartService: CartService,
+    private saleService: SaleService,
+    private addressService: AddressService,
     private _snackBar: MatSnackBar) {
     this.books = this.cartService.get()
     this.updateCartValue()
     this.sumAmount()
+    
+  }
+  ngOnInit() {
+    this.addresses =  this.addressService.getAddress();
   }
 
   setSelected(address: Address) {
@@ -78,14 +55,32 @@ export class AddressComponent {
     })
   }
 
-  saveCart() {
-    // enviar dados para o backend
+  saveCart(): any{
+    this.sale.addressId = this.address.id
+
+    this.books.forEach(book =>{
+      let pack!: Pack
+      pack.book = book.code;
+      pack.amount = 1;
+      this.sale.booksCode.push(pack);
+    })
+
+    this.saleService.buy(this.sale).subscribe({
+      next: (response) => {
+        this._snackBar.open('Venda realizada com sucesso', 'Ok')
+        this.router.navigate(['livros'])
+      },
+      error: (error) => {
+        console.log(error)
+        this._snackBar.open('Venda falhou', 'Ok')
+      }
+    })
   }
 
   clearCart() {
     this.cartService.clean()
     this._snackBar.open('Carrinho limpo com sucesso', 'Ok')
-    this.route.navigate(['livros'])
+    this.router.navigate(['livros'])
   }
 
   private updateCartValue(){
